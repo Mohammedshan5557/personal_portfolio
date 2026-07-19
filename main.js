@@ -156,8 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         rotateY: tiltY,
                         rotateZ: rotateZ,
                         scale: scale,
-                        color: proximity > 0.5 ? secondaryColor : (proximity > 0.2 ? primaryColor : ""),
-                        textShadow: `0 10px ${20 * proximity}px rgba(var(--color-primary-rgb), ${0.4 * proximity})`,
+                        textShadow: `0 10px ${20 * proximity}px rgba(0, 255, 163, ${0.6 * proximity}), 0 0 15px rgba(255, 255, 255, ${0.8 * proximity})`,
                         duration: 0.5,
                         ease: "power2.out",
                         overwrite: "auto"
@@ -172,7 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         rotateY: 0,
                         rotateZ: 0,
                         scale: 1,
-                        color: "",
                         textShadow: "none",
                         duration: 0.8,
                         ease: "elastic.out(1, 0.4)",

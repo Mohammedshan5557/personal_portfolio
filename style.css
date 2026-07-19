@@ -104,6 +104,23 @@ body {
     padding: 80px 24px;
 }
 
+/* --- Metallic Sheen Typography System --- */
+.metallic-text, 
+h1, h2, h3, h4, 
+.section-title, 
+.interactive-name, 
+.interactive-letter,
+.logo, 
+.stat-val,
+.timeline-title {
+    background: linear-gradient(135deg, #FFFFFF 0%, #E2EFE9 20%, #7E9489 40%, #FFFFFF 55%, #9BB0A5 75%, #F0F7F3 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    animation: metallicShine 8s ease-in-out infinite;
+}
+
 .section-title {
     font-family: var(--font-heading);
     font-size: 2.5rem;
@@ -111,9 +128,6 @@ body {
     margin-bottom: 40px;
     position: relative;
     display: inline-block;
-    background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .section-title::after {
@@ -124,7 +138,8 @@ body {
     width: 60px;
     height: 4px;
     border-radius: 2px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(90deg, #00FFA3, #10B981);
+    box-shadow: 0 0 10px rgba(0, 255, 163, 0.5);
 }
 
 /* Buttons */
