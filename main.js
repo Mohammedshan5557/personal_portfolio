@@ -335,4 +335,43 @@ document.addEventListener("DOMContentLoaded", () => {
             formFeedback.classList.add("hidden");
         }, 5000);
     }
+
+    // ----------------------------------------------------
+    // 8. 3D Parallax Tilt for Matte Cards & Containers
+    // ----------------------------------------------------
+    const tiltCards = document.querySelectorAll(".project-card, .about-card, .contact-section .section-container");
+    if (!isTouchDevice) {
+        tiltCards.forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = -((y - centerY) / centerY) * 8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+
+                gsap.to(card, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    transformPerspective: 1000,
+                    scale: 1.02,
+                    duration: 0.4,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            });
+
+            card.addEventListener("mouseleave", () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            });
+        });
+    }
 });
