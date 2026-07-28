@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     // 1. Dark/Light Theme Switching
     // ==========================================================================
-    const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
-    if (savedTheme === "light") {
-        body.classList.remove("dark-theme");
-        body.classList.add("light-theme");
-    } else {
-        body.classList.add("dark-theme");
+    const savedTheme = localStorage.getItem("portfolio-theme") || "light";
+    if (savedTheme === "dark") {
         body.classList.remove("light-theme");
+        body.classList.add("dark-theme");
+    } else {
+        body.classList.add("light-theme");
+        body.classList.remove("dark-theme");
     }
 
     if (themeToggle) {
@@ -200,7 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     const scale = 1 + (proximity * maxScale);
 
                     data.el.style.transform = `translate3d(${shiftX}px, ${rise + shiftY}px, ${20 * proximity}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
-                    data.el.style.textShadow = `0 10px ${15 * proximity}px rgba(46, 232, 158, ${0.5 * proximity}), 0 0 10px rgba(255, 255, 255, ${0.4 * proximity})`;
+                    const isLightTheme = body.classList.contains("light-theme");
+                    const shadowColor = isLightTheme ? `rgba(11, 159, 104, ${0.2 * proximity})` : `rgba(46, 232, 158, ${0.5 * proximity})`;
+                    const secondaryShadow = isLightTheme ? `rgba(0, 0, 0, ${0.1 * proximity})` : `rgba(255, 255, 255, ${0.4 * proximity})`;
+                    data.el.style.textShadow = `0 10px ${15 * proximity}px ${shadowColor}, 0 0 10px ${secondaryShadow}`;
                 } else {
                     data.el.style.transform = '';
                     data.el.style.textShadow = '';

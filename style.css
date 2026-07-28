@@ -12,61 +12,93 @@
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    /* Dark futuristic theme palette (Default) */
-    --bg-primary: #020604;
-    --bg-secondary: #05140b;
-    --bg-gradient: radial-gradient(circle at 50% 50%, #071e11 0%, #020604 100%);
-    --bg-navbar: rgba(2, 6, 4, 0.75);
+    /* Very Light Green Palette (Default) */
+    --bg-primary: #f0fdf4;
+    --bg-secondary: #e6f7ec;
+    --bg-gradient: radial-gradient(circle at 50% 50%, #e1f5e8 0%, #f0fdf4 100%);
+    --bg-navbar: rgba(240, 253, 244, 0.85);
     
-    --accent: #2ee89e;
-    --accent-rgb: 46, 232, 158;
-    --accent-glow: rgba(46, 232, 158, 0.3);
+    --accent: #059669;
+    --accent-rgb: 5, 150, 105;
+    --accent-glow: rgba(5, 150, 105, 0.2);
     
-    --text-primary: #f0f7f3;
-    --text-secondary: #90a99c;
-    --text-muted: #536c5f;
+    --text-primary: #064e3b;
+    --text-secondary: #047857;
+    --text-muted: #4b7a69;
     
-    --border-color: rgba(46, 232, 158, 0.12);
-    --border-hover: rgba(46, 232, 158, 0.3);
+    --border-color: rgba(5, 150, 105, 0.2);
+    --border-hover: rgba(5, 150, 105, 0.45);
     
-    --card-bg: rgba(7, 20, 13, 0.45);
-    --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-    --card-glow-shadow: 0 0 25px rgba(46, 232, 158, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 16px 40px rgba(6, 78, 59, 0.06);
+    --card-glow-shadow: 0 0 25px rgba(5, 150, 105, 0.1);
     
-    --glass-bg: rgba(7, 20, 13, 0.45);
-    --glass-border: rgba(46, 232, 158, 0.15);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(5, 150, 105, 0.2);
+    --glass-shadow: 0 8px 32px rgba(6, 78, 59, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.8);
 
     /* Animation Transitions */
     --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-card: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Light theme palette (Soft Emerald) --- */
+/* --- Light theme palette (Very Light Mint Green) --- */
 body.light-theme {
-    --bg-primary: #f4f8f6;
-    --bg-secondary: #e6ede9;
-    --bg-gradient: radial-gradient(circle at 50% 50%, #e6ede9 0%, #f4f8f6 100%);
-    --bg-navbar: rgba(244, 248, 246, 0.8);
+    --bg-primary: #f0fdf4;
+    --bg-secondary: #e6f7ec;
+    --bg-gradient: radial-gradient(circle at 50% 50%, #e1f5e8 0%, #f0fdf4 100%);
+    --bg-navbar: rgba(240, 253, 244, 0.85);
     
-    --accent: #0b9f68;
-    --accent-rgb: 11, 159, 104;
-    --accent-glow: rgba(11, 159, 104, 0.2);
+    --accent: #059669;
+    --accent-rgb: 5, 150, 105;
+    --accent-glow: rgba(5, 150, 105, 0.2);
     
-    --text-primary: #0b1510;
-    --text-secondary: #485c52;
-    --text-muted: #748c80;
+    --text-primary: #064e3b;
+    --text-secondary: #047857;
+    --text-muted: #4b7a69;
     
-    --border-color: rgba(11, 159, 104, 0.15);
-    --border-hover: rgba(11, 159, 104, 0.4);
+    --border-color: rgba(5, 150, 105, 0.2);
+    --border-hover: rgba(5, 150, 105, 0.45);
     
-    --card-bg: rgba(255, 255, 255, 0.65);
-    --card-shadow: 0 16px 36px rgba(11, 21, 16, 0.05);
-    --card-glow-shadow: 0 0 20px rgba(11, 159, 104, 0.05);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 16px 40px rgba(6, 78, 59, 0.06);
+    --card-glow-shadow: 0 0 25px rgba(5, 150, 105, 0.1);
     
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(11, 159, 104, 0.2);
-    --glass-shadow: 0 8px 32px rgba(11, 21, 16, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(5, 150, 105, 0.2);
+    --glass-shadow: 0 8px 32px rgba(6, 78, 59, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Ensure all dark rectangular containers have light text inside them under Light Green Theme */
+body.light-theme .navbar,
+body.light-theme .card,
+body.light-theme .tabs-container,
+body.light-theme .marquee-card,
+body.light-theme .footer {
+    --bg-primary: #05140b; /* so focused form labels blend with the dark card background */
+    --text-primary: #f0f7f3; /* light text */
+    --text-secondary: #90a99c; /* muted light text */
+    --text-muted: #536c5f;
+    --accent: #2ee89e; /* neon accent green */
+    --accent-rgb: 46, 232, 158;
+    --accent-glow: rgba(46, 232, 158, 0.3);
+    --border-color: rgba(46, 232, 158, 0.15);
+    --border-hover: rgba(46, 232, 158, 0.35);
+    background-color: #05140b;
+    background-image: none;
+}
+
+/* Accent color border adjustment for secondary buttons in Light Green theme */
+body.light-theme .btn-secondary {
+    border-color: rgba(11, 159, 104, 0.3);
+}
+
+/* Gradient overrides for interactive name and subtitle in light theme */
+body.light-theme .interactive-letter,
+body.light-theme .name-subtitle {
+    background: linear-gradient(135deg, #051a0e 30%, #0b9f68 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* ==========================================================================
