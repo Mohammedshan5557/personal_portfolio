@@ -1430,6 +1430,152 @@ body.light-theme .bg-video {
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+/* Infinite Horizontal Marquee Styling */
+.marquee-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px 0;
+    /* Soft fading gradients on the left and right edges for futuristic blending */
+    mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+/* Animations for Left & Right marquee directions */
+.scroll-left {
+    animation: marqueeLeft 22s linear infinite;
+}
+
+.scroll-right {
+    animation: marqueeRight 22s linear infinite;
+}
+
+.scroll-slow {
+    animation-duration: 35s; /* Slower speeds for reading timeline content */
+}
+
+/* Pause scroll animation on hover */
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* Glowing glassmorphic badge pills inside Skills tab */
+.skill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(var(--accent-rgb), 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 10px 22px;
+    margin: 0 10px;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--transition-card);
+}
+
+.skill-pill::before {
+    content: '✦';
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--accent);
+}
+
+.skill-pill:hover {
+    border-color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.12);
+    box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.3);
+    transform: scale(1.05);
+}
+
+/* Glassmorphic timeline cards inside Experience/Education tabs */
+.marquee-card {
+    width: 380px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 0 15px;
+    flex-shrink: 0;
+    white-space: normal; /* allow wrap inside card text block */
+    box-shadow: var(--card-shadow), var(--card-glow-shadow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transition-card);
+    position: relative;
+}
+
+.marquee-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.2), transparent);
+}
+
+.marquee-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: var(--card-shadow), 0 8px 24px rgba(var(--accent-rgb), 0.15);
+}
+
+.marquee-card-date {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+}
+
+.marquee-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.marquee-card-company {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.marquee-card-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Keyframes */
+@keyframes marqueeLeft {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes marqueeRight {
+    0% { transform: translate3d(-50%, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
 /* ==========================================================================
    Mobile-First Responsive Adjustments
    ========================================================================== */
