@@ -1,7 +1,7 @@
 /* ==========================================================================
    Premium Futuristic Portfolio Javascript
    Logic: Vanilla IntersectionObserver, GPU Parallax, Interactive Forms,
-          Typing Animation, Tab Switches, Project Filtering
+          Typing Animation, Tab Switches, Project Filtering, Name 3D Tilt
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabPanes = document.querySelectorAll(".tab-pane");
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
+    const interactiveName = document.getElementById("interactive-name");
+    const interactiveNameContainer = document.getElementById("interactive-name-container");
 
     // ==========================================================================
     // 1. Dark/Light Theme Switching
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 2. 60fps GPU-Accelerated Hero Parallax Glow Scroll Effect
+    // 2. 60fps GPU-Accelerated Hero Parallax Glow & Name Scroll Effect
     // ==========================================================================
     let scrollTicking = false;
     
@@ -58,9 +60,15 @@ document.addEventListener("DOMContentLoaded", () => {
             window.requestAnimationFrame(() => {
                 const scrollTop = window.scrollY || document.documentElement.scrollTop;
                 // Run only when hero is visible in viewport
-                if (heroGlow && scrollTop < window.innerHeight) {
-                    // Parallax factor of 35% scroll speed (translateY = scroll * 0.35)
-                    heroGlow.style.transform = `translate3d(0, ${scrollTop * 0.35}px, 0)`;
+                if (scrollTop < window.innerHeight) {
+                    if (heroGlow) {
+                        // Parallax factor of 35% scroll speed (translateY = scroll * 0.35)
+                        heroGlow.style.transform = `translate3d(0, ${scrollTop * 0.35}px, 0)`;
+                    }
+                    if (interactiveNameContainer) {
+                        // Parallax factor of 15% scroll speed for name container
+                        interactiveNameContainer.style.transform = `translate3d(0, ${scrollTop * 0.15}px, 0)`;
+                    }
                 }
                 scrollTicking = false;
             });
@@ -111,6 +119,101 @@ document.addEventListener("DOMContentLoaded", () => {
         if (bgVideo.readyState >= 1) {
             requestAnimationFrame(animateVideoScrub);
         }
+    }
+
+    // ==========================================================================
+    // 2c. Hero Name 3D Mouse Tilt & Spring Physics
+    // ==========================================================================
+    if (interactiveName) {
+        const nameText = interactiveName.textContent.trim();
+        interactiveName.innerHTML = ""; // Clear plain text
+        
+        // Split into words, then characters
+        const words = nameText.split(" ");
+        words.forEach((wordText, wordIdx) => {
+            const wordSpan = document.createElement("span");
+            wordSpan.className = "name-word";
+            
+            for (let i = 0; i < wordText.length; i++) {
+                const letterSpan = document.createElement("span");
+                letterSpan.className = "interactive-letter";
+                letterSpan.textContent = wordText[i];
+                wordSpan.appendChild(letterSpan);
+            }
+            
+            interactiveName.appendChild(wordSpan);
+            
+            if (wordIdx < words.length - 1) {
+                const spaceSpan = document.createElement("span");
+                spaceSpan.style.width = "1.5rem";
+                interactiveName.appendChild(spaceSpan);
+            }
+        });
+    }
+
+    const letters = document.querySelectorAll(".interactive-letter");
+    let letterData = [];
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+    function cacheLetterPositions() {
+        letterData = Array.from(letters).map(letter => {
+            const rect = letter.getBoundingClientRect();
+            return {
+                el: letter,
+                cx: rect.left + rect.width / 2 + window.scrollX,
+                cy: rect.top + rect.height / 2 + window.scrollY
+            };
+        });
+    }
+
+    // Bind coordinate caching triggers
+    window.addEventListener("load", cacheLetterPositions);
+    window.addEventListener("resize", () => setTimeout(cacheLetterPositions, 100));
+    window.addEventListener("scroll", cacheLetterPositions);
+    document.fonts.ready.then(cacheLetterPositions);
+
+    // Track mouse cursor and apply vector 3D transforms
+    if (!isTouchDevice && letters.length > 0) {
+        window.addEventListener("mousemove", (e) => {
+            const mouseX = e.pageX;
+            const mouseY = e.pageY;
+            const radius = 300; // Radius of interaction influence
+
+            letterData.forEach(data => {
+                const dx = mouseX - data.cx;
+                const dy = mouseY - data.cy;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < radius) {
+                    const proximity = (radius - distance) / radius;
+                    const maxRise = -20; // Upward height
+                    const maxScale = 0.2; // Scale up
+                    const maxShift = 10; // Directional shift
+                    const maxTilt = 20; // 3D Tilt angle
+
+                    const shiftX = (dx / distance) * proximity * maxShift;
+                    const shiftY = (dy / distance) * proximity * maxShift;
+                    const tiltX = -(dy / distance) * proximity * maxTilt;
+                    const tiltY = (dx / distance) * proximity * maxTilt;
+                    const rotateZ = (dx / distance) * proximity * 6; // Small twist
+                    const rise = proximity * maxRise;
+                    const scale = 1 + (proximity * maxScale);
+
+                    data.el.style.transform = `translate3d(${shiftX}px, ${rise + shiftY}px, ${20 * proximity}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
+                    data.el.style.textShadow = `0 10px ${15 * proximity}px rgba(46, 232, 158, ${0.5 * proximity}), 0 0 10px rgba(255, 255, 255, ${0.4 * proximity})`;
+                } else {
+                    data.el.style.transform = '';
+                    data.el.style.textShadow = '';
+                }
+            });
+        });
+
+        document.addEventListener("mouseleave", () => {
+            letters.forEach(letter => {
+                letter.style.transform = '';
+                letter.style.textShadow = '';
+            });
+        });
     }
 
     // ==========================================================================

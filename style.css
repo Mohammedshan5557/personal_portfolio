@@ -393,17 +393,49 @@ body.light-theme .bg-video {
     margin-bottom: 24px;
 }
 
-.hero-title {
+.interactive-name-container {
+    display: inline-block;
+    margin-bottom: 24px;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+.interactive-name {
+    font-family: var(--font-heading);
     font-size: clamp(3.5rem, 9vw, 7.5rem);
     font-weight: 900;
     line-height: 0.95;
     letter-spacing: -0.04em;
-    color: var(--text-primary);
-    margin-bottom: 24px;
+    user-select: none;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-transform: uppercase;
 }
 
-.hero-title span {
+.name-word {
+    display: inline-flex;
+}
+
+.interactive-letter {
+    display: inline-block;
+    position: relative;
+    cursor: default;
+    transform-style: preserve-3d;
+    will-change: transform, filter, text-shadow;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.name-subtitle {
     display: block;
+    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    font-weight: 600;
+    margin-top: 10px;
+    letter-spacing: 0.05em;
     background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
