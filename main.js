@@ -234,10 +234,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         card.style.transitionDelay = `${index * 120}ms`;
                         card.classList.add("revealed");
                     });
-                } else {
-                    // Regular fade-up or slide-in elements
-                    entry.target.classList.add("revealed");
                 }
+                
+                // Always reveal the observed element itself
+                entry.target.classList.add("revealed");
                 
                 // Unobserve so the animation triggers only once
                 observer.unobserve(entry.target);
