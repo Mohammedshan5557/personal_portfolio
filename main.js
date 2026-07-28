@@ -1,6 +1,7 @@
 /* ==========================================================================
    Premium Futuristic Portfolio Javascript
-   Logic: Vanilla IntersectionObserver, GPU Parallax, Interactive Forms
+   Logic: Vanilla IntersectionObserver, GPU Parallax, Interactive Forms,
+          Typing Animation, Tab Switches, Project Filtering
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,6 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const formFeedback = document.getElementById("form-feedback");
     const navLinks = document.querySelectorAll(".nav-link");
     const sections = document.querySelectorAll("main > section");
+    
+    // Interactive components caching
+    const typingText = document.getElementById("typing-text");
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
 
     // ==========================================================================
     // 1. Dark/Light Theme Switching
@@ -108,8 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     // 3. IntersectionObserver for Scroll-Triggered Reveals (Once Trigger)
     // ==========================================================================
-    
-    // Reveal configuration
     const revealOptions = {
         threshold: 0.15,
         rootMargin: "0px 0px -60px 0px"
@@ -168,7 +174,85 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach(section => navObserver.observe(section));
 
     // ==========================================================================
-    // 5. Contact Form Simulation and Submissions
+    // 5. Hero Subtitle Typing Animation Loop
+    // ==========================================================================
+    const roles = ["Modern Web Experiences", "Premium Interfaces", "Interactive Solutions"];
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    let typeDelay = 120;
+
+    function handleTyping() {
+        if (!typingText) return;
+        const currentRole = roles[roleIdx];
+        
+        if (isDeleting) {
+            typingText.textContent = currentRole.substring(0, charIdx - 1);
+            charIdx--;
+            typeDelay = 60; // Deleting is faster
+        } else {
+            typingText.textContent = currentRole.substring(0, charIdx + 1);
+            charIdx++;
+            typeDelay = 120; // Typing speed
+        }
+
+        if (!isDeleting && charIdx === currentRole.length) {
+            isDeleting = true;
+            typeDelay = 2000; // Pause at end of word
+        } else if (isDeleting && charIdx === 0) {
+            isDeleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+            typeDelay = 500; // Pause before next word
+        }
+
+        setTimeout(handleTyping, typeDelay);
+    }
+    
+    // Start typing cycle
+    if (typingText) setTimeout(handleTyping, 1000);
+
+    // ==========================================================================
+    // 6. Interactive About Tabs Trigger
+    // ==========================================================================
+    tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const targetTab = btn.getAttribute("data-tab");
+            
+            tabBtns.forEach(b => b.classList.remove("active"));
+            tabPanes.forEach(pane => pane.classList.remove("active"));
+            
+            btn.classList.add("active");
+            const targetPane = document.getElementById(targetTab);
+            if (targetPane) targetPane.classList.add("active");
+        });
+    });
+
+    // ==========================================================================
+    // 7. Projects Grid Filtering
+    // ==========================================================================
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const filterValue = btn.getAttribute("data-filter");
+            
+            filterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            
+            projectCards.forEach(card => {
+                const category = card.getAttribute("data-category");
+                
+                if (filterValue === "all" || category === filterValue) {
+                    card.classList.remove("hide");
+                    card.classList.add("show");
+                } else {
+                    card.classList.remove("show");
+                    card.classList.add("hide");
+                }
+            });
+        });
+    });
+
+    // ==========================================================================
+    // 8. Contact Form Simulation and Submissions
     // ==========================================================================
     if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
