@@ -51,6 +51,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
+    // 1b. Mobile Navigation Hamburger Menu
+    // ==========================================================================
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const navLinksContainer = document.querySelector(".nav-links");
+    const navbar = document.querySelector(".navbar");
+
+    function closeMobileMenu() {
+        if (mobileMenuToggle && navLinksContainer) {
+            mobileMenuToggle.classList.remove("active");
+            navLinksContainer.classList.remove("active");
+            if (navbar) navbar.classList.remove("mobile-menu-open");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            body.style.overflow = "";
+        }
+    }
+
+    function toggleMobileMenu() {
+        if (!mobileMenuToggle || !navLinksContainer) return;
+        const isOpen = navLinksContainer.classList.contains("active");
+        if (isOpen) {
+            closeMobileMenu();
+        } else {
+            mobileMenuToggle.classList.add("active");
+            navLinksContainer.classList.add("active");
+            if (navbar) navbar.classList.add("mobile-menu-open");
+            mobileMenuToggle.setAttribute("aria-expanded", "true");
+            body.style.overflow = "hidden";
+        }
+    }
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+    }
+
+    // Close menu when clicking any nav link
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            closeMobileMenu();
+        });
+    });
+
+    // Close menu on ESC key press
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMobileMenu();
+    });
+
+    // Reset menu state on viewport resize above 768px
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    });
+
+    // ==========================================================================
     // 2. 60fps GPU-Accelerated Hero Parallax Glow & Name Scroll Effect
     // ==========================================================================
     let scrollTicking = false;
