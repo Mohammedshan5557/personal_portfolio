@@ -1912,17 +1912,53 @@ button, a, input, textarea, select {
         -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 3%, #000 97%, transparent 100%);
     }
 
+    /* Skills tab mobile flex-wrapping (320px to 768px) */
+    #skills .marquee-container {
+        mask-image: none !important;
+        -webkit-mask-image: none !important;
+        padding: 4px 0 !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    #skills .marquee-track {
+        animation: none !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px 6px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Hide duplicate loop pills on mobile so skills fit cleanly */
+    #skills .marquee-track .skill-pill:nth-child(n+7) {
+        display: none !important;
+    }
+
+    #skills .skill-pill {
+        margin: 0 !important;
+        padding: 8px 14px !important;
+        font-size: clamp(0.78rem, 2.5vw, 0.88rem) !important;
+        white-space: normal !important;
+        max-width: 100% !important;
+        word-break: break-word !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        flex: 0 1 auto !important;
+    }
+
     .marquee-card {
         width: calc(100vw - 60px);
         max-width: 320px;
         padding: 16px 14px;
         margin: 0 6px;
-    }
-
-    .skill-pill {
-        padding: 8px 14px;
-        font-size: 0.82rem;
-        margin: 0 4px;
     }
 
     .contact-form-card {
@@ -2046,6 +2082,10 @@ button, a, input, textarea, select {
     .contact-form-card {
         padding: 20px 16px;
     }
+    #skills .skill-pill {
+        padding: 7px 11px !important;
+        font-size: 0.78rem !important;
+    }
 }
 
 /* Ultra Small Phones (<= 360px) */
@@ -2070,5 +2110,10 @@ button, a, input, textarea, select {
     .tab-btn {
         padding: 8px 12px;
         font-size: 0.8rem;
+    }
+
+    #skills .skill-pill {
+        padding: 6px 9px !important;
+        font-size: 0.74rem !important;
     }
 }
