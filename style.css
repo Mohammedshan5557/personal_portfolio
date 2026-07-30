@@ -400,37 +400,46 @@ body.light-theme .bg-video {
 }
 
 .hero-greeting {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     color: var(--accent);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .interactive-name-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 24px;
     perspective: 1000px;
     will-change: transform;
+    width: 100%;
 }
 
 .interactive-name {
     font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-size: clamp(3.2rem, 10vw, 7.5rem);
     font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
     user-select: none;
-    white-space: nowrap;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
     text-transform: uppercase;
+    width: 100%;
+    text-align: center;
 }
 
 .name-word {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
 }
 
 .interactive-letter {
@@ -440,20 +449,21 @@ body.light-theme .bg-video {
     transform-style: preserve-3d;
     will-change: transform, filter, text-shadow;
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+    background: linear-gradient(180deg, #094738 0%, #032b21 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .name-subtitle {
     display: block;
-    font-size: clamp(1.2rem, 3vw, 2.2rem);
-    font-weight: 600;
-    margin-top: 10px;
-    letter-spacing: 0.05em;
-    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+    font-size: clamp(1.4rem, 3.8vw, 2.4rem);
+    font-weight: 700;
+    margin-top: 18px;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, #094738 0%, #06664d 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-align: center;
 }
 
 .hero-subtitle {
@@ -1795,22 +1805,26 @@ button, a, input, textarea, select {
     }
 
     .interactive-name {
-        font-size: clamp(2.2rem, 8.5vw, 4.5rem);
+        font-size: clamp(2.4rem, 11vw, 4.8rem);
         width: 100%;
-        white-space: normal;
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         justify-content: center;
+        line-height: 0.94;
     }
 
     .name-word {
-        display: inline-flex;
-        flex-wrap: wrap;
+        display: flex;
         justify-content: center;
+        width: 100%;
+        text-align: center;
     }
     
     .name-subtitle {
-        font-size: clamp(1.1rem, 4vw, 1.8rem);
+        font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+        margin-top: 14px;
     }
     
     .hero-subtitle {
