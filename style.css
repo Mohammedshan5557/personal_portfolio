@@ -26,20 +26,20 @@
     --text-secondary: #047857;
     --text-muted: #4b7a69;
     
-    --border-color: rgba(5, 150, 105, 0.2);
-    --border-hover: rgba(5, 150, 105, 0.45);
+    --border-color: rgba(5, 150, 105, 0.18);
+    --border-hover: rgba(5, 150, 105, 0.4);
     
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --card-shadow: 0 16px 40px rgba(6, 78, 59, 0.06);
-    --card-glow-shadow: 0 0 25px rgba(5, 150, 105, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --card-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 8px 18px -6px rgba(0, 0, 0, 0.03);
+    --card-glow-shadow: 0 0 30px rgba(5, 150, 105, 0.12);
     
-    --glass-bg: rgba(255, 255, 255, 0.8);
-    --glass-border: rgba(5, 150, 105, 0.2);
-    --glass-shadow: 0 8px 32px rgba(6, 78, 59, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(5, 150, 105, 0.16);
+    --glass-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 6px 16px -4px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 
-    /* Animation Transitions */
-    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-card: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Liquid Glass & Floating Animation Transitions */
+    --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-card: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Light theme palette (Very Light Mint Green) --- */
@@ -49,7 +49,7 @@ body {
     --bg-primary: #f0fdf4;
     --bg-secondary: #e6f7ec;
     --bg-gradient: radial-gradient(circle at 50% 50%, #e1f5e8 0%, #f0fdf4 100%);
-    --bg-navbar: rgba(240, 253, 244, 0.9);
+    --bg-navbar: rgba(240, 253, 244, 0.85);
     
     --accent: #059669;
     --accent-rgb: 5, 150, 105;
@@ -59,16 +59,16 @@ body {
     --text-secondary: #047857;
     --text-muted: #4b7a69;
     
-    --border-color: rgba(5, 150, 105, 0.2);
-    --border-hover: rgba(5, 150, 105, 0.45);
+    --border-color: rgba(5, 150, 105, 0.18);
+    --border-hover: rgba(5, 150, 105, 0.4);
     
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --card-shadow: 0 16px 40px rgba(6, 78, 59, 0.08);
-    --card-glow-shadow: 0 0 25px rgba(5, 150, 105, 0.12);
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --card-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 8px 18px -6px rgba(0, 0, 0, 0.03);
+    --card-glow-shadow: 0 0 30px rgba(5, 150, 105, 0.12);
     
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(5, 150, 105, 0.2);
-    --glass-shadow: 0 8px 32px rgba(6, 78, 59, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(5, 150, 105, 0.16);
+    --glass-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 6px 16px -4px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
 /* Accent color border adjustment for secondary buttons */
@@ -196,41 +196,53 @@ h1, h2, h3, h4 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 32px;
+    padding: 14px 34px;
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: 0.95rem;
-    border-radius: 30px;
+    border-radius: 9999px;
     cursor: pointer;
     text-decoration: none;
     transition: var(--transition-card);
     border: 1px solid transparent;
+    box-sizing: border-box;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent) 0%, rgba(var(--accent-rgb), 0.7) 100%);
-    color: #020604;
-    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.25);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 24px -6px rgba(5, 150, 105, 0.4), inset 0 1px 1.5px rgba(255, 255, 255, 0.35);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.45);
-    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 36px -4px rgba(5, 150, 105, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.45);
+    background: linear-gradient(135deg, #06a977 0%, #058762 100%);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 6px 18px -4px rgba(5, 150, 105, 0.4);
 }
 
 .btn-secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.85);
     color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(5, 150, 105, 0.25);
+    box-shadow: 0 6px 18px -4px rgba(6, 78, 59, 0.05), inset 0 1px 1.5px rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .btn-secondary:hover {
-    background: rgba(var(--accent-rgb), 0.05);
+    background: rgba(5, 150, 105, 0.08);
     border-color: var(--accent);
-    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -4px rgba(5, 150, 105, 0.18), inset 0 1px 1.5px rgba(255, 255, 255, 1);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px) scale(0.98);
 }
 
 /* ==========================================================================
@@ -534,13 +546,13 @@ body.light-theme .bg-video {
    Cards & Glassmorphism Design
    ========================================================================== */
 .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+    background: var(--card-bg, rgba(255, 255, 255, 0.88));
+    border: 1px solid var(--border-color, rgba(5, 150, 105, 0.18));
+    border-radius: 32px;
     padding: 36px;
-    box-shadow: var(--card-shadow), var(--card-glow-shadow);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 8px 18px -6px rgba(0, 0, 0, 0.03), inset 0 1px 1.5px rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transition: var(--transition-card);
     position: relative;
     overflow: hidden;
@@ -553,13 +565,15 @@ body.light-theme .bg-video {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.25), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.015);
-    border-color: var(--border-hover);
-    box-shadow: var(--card-shadow), 0 12px 30px rgba(var(--accent-rgb), 0.15);
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--border-hover, rgba(5, 150, 105, 0.4));
+    box-shadow: 0 28px 50px -15px rgba(6, 78, 59, 0.12), 0 0 30px rgba(5, 150, 105, 0.15), inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 /* ==========================================================================
@@ -699,15 +713,16 @@ body.light-theme .bg-video {
 
 .project-graphic-box {
     height: 180px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.1) 0%, rgba(var(--accent-rgb), 0.02) 100%);
-    border: 1px solid rgba(var(--accent-rgb), 0.1);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.08) 0%, rgba(var(--accent-rgb), 0.02) 100%);
+    border: 1px solid rgba(var(--accent-rgb), 0.14);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 24px;
     overflow: hidden;
     position: relative;
+    box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.85);
 }
 
 .project-graphic-box::after {
@@ -930,14 +945,17 @@ body.light-theme .bg-video {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    background: rgba(2, 6, 4, 0.4);
+    background: rgba(255, 255, 255, 0.85);
     border: 1px solid var(--border-color);
     outline: none;
-    padding: 18px;
+    padding: 18px 20px;
     color: var(--text-primary);
     font-family: var(--font-body);
     font-size: 1rem;
-    border-radius: 12px;
+    border-radius: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(6, 78, 59, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: var(--transition-card);
 }
 
