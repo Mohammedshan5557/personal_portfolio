@@ -277,37 +277,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 3. IntersectionObserver for Scroll-Triggered Reveals (Once Trigger)
+    // 3. IntersectionObserver for Replaying Scroll-Triggered Reveals
     // ==========================================================================
     const revealOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px"
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
     };
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // If it is a staggered card container
                 if (entry.target.classList.contains("reveal-stagger")) {
                     const cards = entry.target.querySelectorAll(".reveal-card");
                     cards.forEach((card, index) => {
-                        card.style.transitionDelay = `${index * 120}ms`;
+                        card.style.transitionDelay = `${index * 100}ms`;
                         card.classList.add("revealed");
                     });
                 }
                 
-                // Always reveal the observed element itself
+                // Add revealed class when element enters viewport
                 entry.target.classList.add("revealed");
+            } else {
+                // Reset animation state when element leaves viewport
+                if (entry.target.classList.contains("reveal-stagger")) {
+                    const cards = entry.target.querySelectorAll(".reveal-card");
+                    cards.forEach(card => {
+                        card.classList.remove("revealed");
+                    });
+                }
                 
-                // Unobserve so the animation triggers only once
-                observer.unobserve(entry.target);
+                // Remove revealed class so animation replays upon next entry
+                entry.target.classList.remove("revealed");
             }
         });
     }, revealOptions);
 
-    // Track and observe reveal elements
+    // Track and observe all reveal elements
     const elementsToReveal = document.querySelectorAll(
-        ".reveal-fade-up, .reveal-slide-left, .reveal-slide-right, .reveal-stagger"
+        ".reveal-fade-up, .reveal-slide-left, .reveal-slide-right, .reveal-stagger, .reveal-card"
     );
     elementsToReveal.forEach(el => revealObserver.observe(el));
 
