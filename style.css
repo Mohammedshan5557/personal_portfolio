@@ -5,11 +5,11 @@
    ========================================================================== */
 
 /* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap');
 
 :root {
     /* Fonts */
-    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Very Light Green Palette (Default) */
@@ -110,26 +110,27 @@ body {
 
 /* Hero Title Gradient in Light Mode */
 body.light-theme .interactive-letter {
-    background: linear-gradient(180deg, #094738 0%, #032b21 100%);
+    background: linear-gradient(140deg, #064e3b 0%, #059669 55%, #0284c7 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 14px rgba(5, 150, 105, 0.12));
 }
 body.light-theme .name-subtitle {
-    background: linear-gradient(135deg, #094738 0%, #06664d 100%);
+    background: linear-gradient(135deg, #064e3b 0%, #059669 70%, #0284c7 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 /* Hero Title Gradient in Dark Mode */
 body.dark-theme .interactive-letter {
-    background: linear-gradient(180deg, #FFFFFF 20%, #00E5FF 100%);
+    background: linear-gradient(140deg, #FFFFFF 15%, #00E5FF 60%, #3B82F6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 25px rgba(0, 229, 255, 0.25);
+    filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.3));
 }
 
 body.dark-theme .name-subtitle {
-    background: linear-gradient(135deg, #00E5FF 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #00E5FF 0%, #3B82F6 60%, #8B5CF6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -556,12 +557,14 @@ body.light-theme .bg-video {
 }
 
 .hero-greeting {
-    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-family: var(--font-heading);
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.28em;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .interactive-name-container {
@@ -577,10 +580,10 @@ body.light-theme .bg-video {
 
 .interactive-name {
     font-family: var(--font-heading);
-    font-size: clamp(3.2rem, 10vw, 7.5rem);
-    font-weight: 900;
-    line-height: 0.92;
-    letter-spacing: -0.03em;
+    font-size: clamp(3.2rem, 10.5vw, 7.8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.015em;
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -589,6 +592,9 @@ body.light-theme .bg-video {
     text-transform: uppercase;
     width: 100%;
     text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .name-word {
@@ -604,31 +610,30 @@ body.light-theme .bg-video {
     cursor: default;
     transform-style: preserve-3d;
     will-change: transform, filter, text-shadow;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    background: linear-gradient(180deg, #094738 0%, #032b21 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    border-radius: 4px;
 }
 
 .name-subtitle {
     display: block;
+    font-family: var(--font-heading);
     font-size: clamp(1.4rem, 3.8vw, 2.4rem);
     font-weight: 700;
     margin-top: 18px;
-    letter-spacing: 0.02em;
-    background: linear-gradient(135deg, #094738 0%, #06664d 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.03em;
     text-align: center;
+    -webkit-font-smoothing: antialiased;
 }
 
 .hero-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 400;
+    font-family: var(--font-body);
+    font-size: clamp(1.15rem, 2.8vw, 1.75rem);
+    font-weight: 500;
     color: var(--text-secondary);
     max-width: 650px;
     margin: 0 auto 48px;
-    line-height: 1.6;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
 }
 
 .hero-actions {
