@@ -70,13 +70,13 @@ html.light-theme {
     --glass-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 6px 16px -4px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
-/* --- Premium Luxury Dark Theme Palette --- */
+/* --- Premium Matte Avocado Theme Palette --- */
 body.dark-theme,
 html.dark-theme {
-    --bg-primary: #070a12;
-    --bg-secondary: #0b1120;
-    --bg-gradient: radial-gradient(circle at 50% 25%, rgba(14, 116, 144, 0.22) 0%, rgba(7, 10, 18, 0.98) 75%);
-    --bg-navbar: rgba(7, 10, 18, 0.85);
+    --bg-primary: #11160F;
+    --bg-secondary: #1C2618;
+    --bg-gradient: radial-gradient(ellipse at 50% 20%, #24331D 0%, #1A2516 45%, #11160F 100%);
+    --bg-navbar: rgba(17, 22, 15, 0.88);
     
     --accent: #38bdf8;
     --accent-rgb: 56, 189, 248;
@@ -259,16 +259,93 @@ body.dark-theme .form-group textarea:not(:placeholder-shown) ~ label {
     background: #070a12;
 }
 
-/* Aurora Glow Background Effect in Dark Mode */
+/* Matte Avocado Ambient Hero Glow & Layered Texture Elements */
 body.dark-theme .hero-glow {
-    background: radial-gradient(circle at 50% 35%, rgba(14, 116, 144, 0.25) 0%, rgba(6, 182, 212, 0.15) 45%, rgba(15, 23, 42, 0.05) 75%, transparent 100%);
-    animation: auroraFloat 12s infinite alternate ease-in-out;
+    background: radial-gradient(circle at 50% 30%, rgba(85, 107, 47, 0.22) 0%, rgba(59, 74, 37, 0.12) 40%, rgba(36, 51, 29, 0.04) 70%, transparent 100%);
+    animation: avocadoFloat 14s infinite alternate ease-in-out;
 }
 
-@keyframes auroraFloat {
-    0% { transform: translate3d(0, 0, 0) scale(1); filter: blur(60px); }
-    50% { transform: translate3d(40px, -30px, 0) scale(1.1); filter: blur(80px); }
-    100% { transform: translate3d(-30px, 40px, 0) scale(0.95); filter: blur(70px); }
+@keyframes avocadoFloat {
+    0% { transform: translate3d(0, 0, 0) scale(1); filter: blur(75px); }
+    50% { transform: translate3d(30px, -25px, 0) scale(1.08); filter: blur(95px); }
+    100% { transform: translate3d(-25px, 30px, 0) scale(0.95); filter: blur(80px); }
+}
+
+/* Vignette Mask around screen edges */
+.bg-vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 130px rgba(17, 22, 15, 0.85);
+    pointer-events: none;
+    z-index: -1;
+    display: none;
+}
+
+body.dark-theme .bg-vignette {
+    display: block;
+}
+
+/* Low-Opacity Subtle Avocado Floating Particles Layer (5-8% opacity) */
+.avocado-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    background-image: 
+        radial-gradient(2px 2px at 40px 60px, #A3C95A, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 180px 220px, #556B2F, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 340px 100px, #4E6A33, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 500px 400px, #A3C95A, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 760px 180px, #556B2F, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 920px 480px, #3B4A25, rgba(0,0,0,0));
+    background-size: 1000px 600px;
+    animation: particleDrift 35s linear infinite;
+    transition: opacity 0.5s ease;
+}
+
+body.dark-theme .avocado-particles {
+    opacity: 0.08;
+}
+
+@keyframes particleDrift {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 600px; }
+}
+
+/* Organic Background Corner Accents */
+body.dark-theme::before {
+    content: '';
+    position: fixed;
+    top: -20vw;
+    left: -15vw;
+    width: 55vw;
+    height: 55vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(85, 107, 47, 0.16) 0%, rgba(78, 106, 51, 0.08) 50%, transparent 75%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body.dark-theme::after {
+    content: '';
+    position: fixed;
+    bottom: -20vw;
+    right: -15vw;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 74, 37, 0.18) 0%, rgba(36, 51, 29, 0.1) 50%, transparent 75%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ==========================================================================
