@@ -1111,34 +1111,47 @@ body.light-theme .bg-video {
 .tabs-container {
     margin-top: 40px;
     border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 20px;
+    padding: clamp(14px, 4vw, 24px);
     background: var(--glass-bg);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .tabs-header {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 16px;
     margin-bottom: 20px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .tab-btn {
+    flex: 1 1 auto;
+    min-height: 48px;
     background: rgba(var(--accent-rgb), 0.03);
     border: 1px solid rgba(var(--accent-rgb), 0.25);
     color: var(--text-secondary);
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.9rem;
-    padding: 10px 20px 10px 30px;
+    font-size: clamp(0.82rem, 2.5vw, 0.95rem);
+    padding: 10px 16px 10px 28px;
     cursor: pointer;
     border-radius: 12px;
     transition: var(--transition-card);
     position: relative;
     overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 90px;
 }
 
 /* Glowing green dot indicator inside tab button */
@@ -1450,13 +1463,15 @@ body.light-theme .bg-video {
     overflow: hidden;
     position: relative;
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 10px 0;
+    box-sizing: border-box;
     /* Soft fading gradients on the left and right edges for futuristic blending */
-    mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 
 .marquee-track {
@@ -1493,15 +1508,16 @@ body.light-theme .bg-video {
     border: 1px solid var(--border-color);
     border-radius: 24px;
     padding: 10px 22px;
-    margin: 0 10px;
+    margin: 0 8px;
     color: var(--text-primary);
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: clamp(0.82rem, 2.5vw, 0.95rem);
     box-shadow: var(--glass-shadow);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: var(--transition-card);
+    flex-shrink: 0;
 }
 
 .skill-pill::before {
@@ -1519,12 +1535,13 @@ body.light-theme .bg-video {
 
 /* Glassmorphic timeline cards inside Experience/Education tabs */
 .marquee-card {
-    width: 380px;
+    width: clamp(260px, 82vw, 380px);
+    max-width: calc(100vw - 64px);
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 24px;
-    margin: 0 15px;
+    padding: clamp(16px, 4vw, 24px);
+    margin: 0 10px;
     flex-shrink: 0;
     white-space: normal; /* allow wrap inside card text block */
     box-shadow: var(--card-shadow), var(--card-glow-shadow);
@@ -1532,6 +1549,7 @@ body.light-theme .bg-video {
     -webkit-backdrop-filter: blur(12px);
     transition: var(--transition-card);
     position: relative;
+    box-sizing: border-box;
 }
 
 .marquee-card::before {
@@ -1859,21 +1877,52 @@ button, a, input, textarea, select {
         justify-content: center;
     }
 
+    .tabs-container {
+        margin-top: 24px;
+        padding: 14px 10px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
     .tabs-header {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
     }
 
     .tab-btn {
-        min-height: 44px;
-        padding: 10px 18px;
-        font-size: 0.9rem;
+        min-height: 48px;
+        padding: 8px 10px 8px 22px;
+        font-size: 0.85rem;
         flex: 1 1 auto;
-        min-width: 90px;
+        min-width: 80px;
         text-align: center;
+    }
+
+    .marquee-container {
+        padding: 6px 0;
+        gap: 12px;
+        mask-image: linear-gradient(to right, transparent 0%, #000 3%, #000 97%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 3%, #000 97%, transparent 100%);
+    }
+
+    .marquee-card {
+        width: calc(100vw - 60px);
+        max-width: 320px;
+        padding: 16px 14px;
+        margin: 0 6px;
+    }
+
+    .skill-pill {
+        padding: 8px 14px;
+        font-size: 0.82rem;
+        margin: 0 4px;
     }
 
     .contact-form-card {
@@ -1912,11 +1961,57 @@ button, a, input, textarea, select {
 /* Small Smart Phones (<= 480px) */
 @media (max-width: 480px) {
     section {
-        padding: 60px 16px;
+        padding: 60px 14px;
     }
 
     .nav-container {
-        padding: 14px 16px;
+        padding: 14px 14px;
+    }
+
+    .tabs-container {
+        padding: 12px 8px;
+        margin-top: 20px;
+    }
+
+    .tabs-header {
+        gap: 4px;
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+    }
+
+    .tab-btn {
+        padding: 8px 6px 8px 18px;
+        font-size: 0.8rem;
+        min-width: 70px;
+        min-height: 44px;
+    }
+
+    .tab-btn::after {
+        left: 8px;
+        width: 5px;
+        height: 5px;
+    }
+
+    .marquee-card {
+        width: calc(100vw - 52px);
+        max-width: 290px;
+        padding: 14px 12px;
+        margin: 0 4px;
+    }
+
+    .marquee-card-title {
+        font-size: 1.05rem;
+    }
+
+    .marquee-card-desc {
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .skill-pill {
+        padding: 7px 12px;
+        font-size: 0.8rem;
+        margin: 0 3px;
     }
 
     .interactive-name {
@@ -1926,18 +2021,6 @@ button, a, input, textarea, select {
     .scroll-indicator {
         bottom: 24px;
         scale: 0.85;
-    }
-
-    .marquee-card {
-        width: 270px;
-        padding: 18px 16px;
-        margin: 0 6px;
-    }
-
-    .skill-pill {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-        margin: 0 6px;
     }
 
     .card-stats {
