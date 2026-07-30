@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohammed Shan | Premium Futuristic Portfolio</title>
     <meta name="description" content="Personal portfolio of Mohammed Shan, showcasing creative engineering, interactive web experiences, and premium futuristic designs.">
+    <!-- Inline Theme Initializer (Prevents Flickering) -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem("portfolio-theme");
+            const theme = saved ? saved : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.classList.add(theme + "-theme");
+        })();
+    </script>
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=111.0">
+    <link rel="stylesheet" href="style.css?v=113.0">
 </head>
 <body class="light-theme">
     <!-- Scroll-Driven Background Video -->

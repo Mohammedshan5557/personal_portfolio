@@ -27,26 +27,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const interactiveNameContainer = document.getElementById("interactive-name-container");
 
     // ==========================================================================
-    // 1. Dark/Light Theme Switching
     // ==========================================================================
-    const savedTheme = localStorage.getItem("portfolio-theme") || "light";
-    if (savedTheme === "dark") {
-        body.classList.remove("light-theme");
-        body.classList.add("dark-theme");
-    } else {
-        body.classList.add("light-theme");
-        body.classList.remove("dark-theme");
-    }
+    // 1. Robust Dark/Light Theme Switching with System Preference & Storage
+    // ==========================================================================
+    const getPreferredTheme = () => {
+        const saved = localStorage.getItem("portfolio-theme");
+        if (saved) return saved;
+        return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    };
+
+    const applyTheme = (theme) => {
+        const isDark = (theme === "dark");
+        
+        body.classList.toggle("dark-theme", isDark);
+        body.classList.toggle("light-theme", !isDark);
+        document.documentElement.classList.toggle("dark-theme", isDark);
+        document.documentElement.classList.toggle("light-theme", !isDark);
+        
+        localStorage.setItem("portfolio-theme", theme);
+    };
+
+    // Initialize initial theme state
+    applyTheme(getPreferredTheme());
 
     if (themeToggle) {
         themeToggle.addEventListener("click", () => {
-            if (body.classList.contains("dark-theme")) {
-                body.classList.replace("dark-theme", "light-theme");
-                localStorage.setItem("portfolio-theme", "light");
-            } else {
-                body.classList.replace("light-theme", "dark-theme");
-                localStorage.setItem("portfolio-theme", "dark");
-            }
+            const isDark = body.classList.contains("dark-theme");
+            applyTheme(isDark ? "light" : "dark");
         });
     }
 

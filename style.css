@@ -44,8 +44,7 @@
 
 /* --- Light theme palette (Very Light Mint Green) --- */
 body.light-theme,
-body.dark-theme,
-body {
+html.light-theme {
     --bg-primary: #f0fdf4;
     --bg-secondary: #e6f7ec;
     --bg-gradient: radial-gradient(circle at 50% 50%, #e1f5e8 0%, #f0fdf4 100%);
@@ -71,17 +70,162 @@ body {
     --glass-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 6px 16px -4px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
-/* Accent color border adjustment for secondary buttons */
-.btn-secondary {
-    border-color: rgba(5, 150, 105, 0.3);
+/* --- Premium Luxury Dark Theme Palette --- */
+body.dark-theme,
+html.dark-theme {
+    --bg-primary: #050816;
+    --bg-secondary: #0F172A;
+    --bg-gradient: radial-gradient(ellipse at 50% -10%, #1e1b4b 0%, #0f172a 45%, #050816 100%);
+    --bg-navbar: rgba(5, 8, 22, 0.82);
+    
+    --accent: #00E5FF;
+    --accent-rgb: 0, 229, 255;
+    --accent-secondary: #3B82F6;
+    --accent-highlight: #8B5CF6;
+    --accent-glow: rgba(0, 229, 255, 0.25);
+    
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(0, 229, 255, 0.45);
+    
+    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.06);
+    --card-glow-shadow: 0 0 35px rgba(0, 229, 255, 0.15);
+    
+    --glass-bg: rgba(15, 23, 42, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
-/* Gradient overrides for interactive name and subtitle */
-.interactive-letter,
-.name-subtitle {
-    background: linear-gradient(135deg, #064e3b 30%, #059669 100%);
+/* Base Body Transition for Smooth Theme Toggle */
+body {
+    background-color: var(--bg-primary);
+    background-image: var(--bg-gradient);
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Hero Title Gradient in Light Mode */
+body.light-theme .interactive-letter {
+    background: linear-gradient(180deg, #094738 0%, #032b21 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+body.light-theme .name-subtitle {
+    background: linear-gradient(135deg, #094738 0%, #06664d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hero Title Gradient in Dark Mode */
+body.dark-theme .interactive-letter {
+    background: linear-gradient(180deg, #FFFFFF 20%, #00E5FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(0, 229, 255, 0.25);
+}
+
+body.dark-theme .name-subtitle {
+    background: linear-gradient(135deg, #00E5FF 0%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Buttons in Dark Theme */
+body.dark-theme .btn-primary {
+    background: linear-gradient(135deg, #00E5FF 0%, #3B82F6 100%);
+    color: #050816;
+    box-shadow: 0 10px 24px -6px rgba(0, 229, 255, 0.45), inset 0 1px 1.5px rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+}
+
+body.dark-theme .btn-primary:hover {
+    background: linear-gradient(135deg, #38ef7d 0%, #00E5FF 100%);
+    box-shadow: 0 16px 36px -4px rgba(0, 229, 255, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+body.dark-theme .btn-secondary {
+    background: rgba(15, 23, 42, 0.7);
+    color: #F8FAFC;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .btn-secondary:hover {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: #00E5FF;
+    box-shadow: 0 12px 28px -4px rgba(0, 229, 255, 0.25), inset 0 1px 1.5px rgba(255, 255, 255, 0.2);
+}
+
+/* Active Tabs & Filter Buttons in Dark Theme */
+body.dark-theme .tab-btn.active,
+body.dark-theme .filter-btn.active {
+    background: linear-gradient(135deg, #00E5FF 0%, #3B82F6 100%);
+    color: #050816;
+    border-color: #00E5FF;
+    box-shadow: 0 8px 24px -4px rgba(0, 229, 255, 0.4);
+    font-weight: 700;
+}
+
+body.dark-theme .tab-btn.active::after {
+    background-color: #050816;
+    box-shadow: 0 0 6px rgba(0, 229, 255, 0.8);
+}
+
+/* Skill Pills in Dark Theme */
+body.dark-theme .skill-pill {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #F8FAFC;
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .skill-pill .pill-icon {
+    color: #00E5FF;
+}
+
+body.dark-theme .skill-pill:hover {
+    border-color: #00E5FF;
+    background: rgba(0, 229, 255, 0.12);
+    box-shadow: 0 8px 20px -4px rgba(0, 229, 255, 0.3);
+}
+
+/* Form Fields in Dark Theme */
+body.dark-theme .form-group input,
+body.dark-theme .form-group textarea {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #F8FAFC;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .form-group input:focus,
+body.dark-theme .form-group textarea:focus {
+    border-color: #00E5FF;
+    box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-theme .form-group input:focus ~ label,
+body.dark-theme .form-group input:not(:placeholder-shown) ~ label,
+body.dark-theme .form-group textarea:focus ~ label,
+body.dark-theme .form-group textarea:not(:placeholder-shown) ~ label {
+    color: #00E5FF;
+    background: #050816;
+}
+
+/* Aurora Glow Background Effect in Dark Mode */
+body.dark-theme .hero-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.18) 0%, rgba(59, 130, 246, 0.12) 45%, rgba(139, 92, 246, 0.08) 75%, transparent 100%);
+    animation: auroraFloat 12s infinite alternate ease-in-out;
+}
+
+@keyframes auroraFloat {
+    0% { transform: translate3d(0, 0, 0) scale(1); filter: blur(60px); }
+    50% { transform: translate3d(40px, -30px, 0) scale(1.1); filter: blur(80px); }
+    100% { transform: translate3d(-30px, 40px, 0) scale(0.95); filter: blur(70px); }
 }
 
 /* ==========================================================================
