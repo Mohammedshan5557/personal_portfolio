@@ -473,4 +473,158 @@ document.addEventListener("DOMContentLoaded", () => {
             formFeedback.classList.add("hidden");
         }, 6000);
     }
+
+    // ==========================================================================
+    // 9. Interactive Showcase Track Engine (Recreating 517.mp4)
+    // ==========================================================================
+    const showcaseViewport = document.getElementById("showcase-viewport");
+    const showcaseTrack = document.getElementById("showcase-track");
+    const cardWrappers = document.querySelectorAll(".showcase-card-wrapper");
+
+    if (showcaseViewport && showcaseTrack && cardWrappers.length > 0) {
+        let currentX = 0;
+        let targetX = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startTargetX = 0;
+        let velocityX = 0;
+        let lastDragX = 0;
+        let lastDragTime = 0;
+
+        function getMaxScroll() {
+            const trackWidth = showcaseTrack.scrollWidth;
+            const viewportWidth = showcaseViewport.clientWidth;
+            return Math.max(0, trackWidth - viewportWidth);
+        }
+
+        // Mouse Drag Controls (Ultra Smooth Physics & Selection Suppression)
+        showcaseViewport.addEventListener("mousedown", (e) => {
+            // Allow interactive buttons to be clicked normally
+            if (e.target.closest("button") || e.target.closest(".play-btn") || e.target.closest(".watch-play") || e.target.closest(".btn-main-play") || e.target.closest(".spot-play-btn")) {
+                return;
+            }
+            isDragging = true;
+            startX = e.clientX;
+            startTargetX = targetX;
+            lastDragX = e.clientX;
+            lastDragTime = performance.now();
+            velocityX = 0;
+            showcaseViewport.style.cursor = "grabbing";
+            document.body.style.userSelect = "none";
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX;
+            targetX = startTargetX - dx;
+            targetX = Math.max(0, Math.min(targetX, getMaxScroll()));
+
+            const now = performance.now();
+            const dt = now - lastDragTime;
+            if (dt > 0) {
+                velocityX = (e.clientX - lastDragX) / dt;
+            }
+            lastDragX = e.clientX;
+            lastDragTime = now;
+        });
+
+        window.addEventListener("mouseup", () => {
+            if (isDragging) {
+                isDragging = false;
+                showcaseViewport.style.cursor = "grab";
+                document.body.style.userSelect = "";
+                // Smooth momentum decay
+                targetX -= velocityX * 160;
+                targetX = Math.max(0, Math.min(targetX, getMaxScroll()));
+            }
+        });
+
+        // Touch Drag Controls
+        showcaseViewport.addEventListener("touchstart", (e) => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                startTargetX = targetX;
+            }
+        }, { passive: true });
+
+        window.addEventListener("touchmove", (e) => {
+            if (!isDragging || e.touches.length !== 1) return;
+            const dx = e.touches[0].clientX - startX;
+            targetX = startTargetX - dx;
+            targetX = Math.max(0, Math.min(targetX, getMaxScroll()));
+        }, { passive: true });
+
+        window.addEventListener("touchend", () => {
+            isDragging = false;
+        });
+
+        // Wheel horizontal scrubbing over track section
+        showcaseViewport.addEventListener("wheel", (e) => {
+            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+            if (Math.abs(delta) > 5) {
+                targetX += delta * 0.8;
+                targetX = Math.max(0, Math.min(targetX, getMaxScroll()));
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Keyboard Arrow Key Navigation
+        window.addEventListener("keydown", (e) => {
+            if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
+            const cardWidth = 416; // Card width + gap
+            if (e.key === "ArrowRight") {
+                targetX = Math.min(targetX + cardWidth, getMaxScroll());
+            } else if (e.key === "ArrowLeft") {
+                targetX = Math.max(targetX - cardWidth, 0);
+            }
+        });
+
+        // Interactive Player Controls inside Mockups
+        const playBtns = document.querySelectorAll(".play-btn, .watch-play, .btn-main-play, .spot-play-btn, .wheel-play");
+        playBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (btn.textContent.trim() === "▶" || btn.textContent.trim() === "⏯") {
+                    btn.textContent = "⏸";
+                } else {
+                    btn.textContent = "▶";
+                }
+            });
+        });
+
+        // 60 FPS Render Tick Loop with Lerp & Center Scaling Depth
+        function renderShowcaseTrack() {
+            // Apply Lerp (linear interpolation)
+            currentX += (targetX - currentX) * 0.08;
+            showcaseTrack.style.transform = `translate3d(${-currentX}px, 0, 0)`;
+
+            // Compute depth & scale based on card proximity to viewport center
+            const viewportCenter = window.innerWidth / 2;
+            const maxDistance = window.innerWidth * 0.45;
+
+            cardWrappers.forEach((wrapper) => {
+                const rect = wrapper.getBoundingClientRect();
+                const cardCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(viewportCenter - cardCenter);
+
+                // Calculate normalized distance factor (0 at center, 1 at edges)
+                const factor = Math.min(1, distance / maxDistance);
+                
+                // Center card scales to ~1.06, outer cards scale down to ~0.92
+                const scale = 1.06 - factor * 0.14;
+                const opacity = 1.0 - factor * 0.35;
+
+                wrapper.style.transform = `scale(${scale})`;
+                wrapper.style.opacity = opacity.toFixed(3);
+            });
+
+            requestAnimationFrame(renderShowcaseTrack);
+        }
+
+        requestAnimationFrame(renderShowcaseTrack);
+    }
 });
+
+
