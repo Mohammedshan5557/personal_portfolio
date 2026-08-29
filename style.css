@@ -2427,39 +2427,30 @@ button, a, input, textarea, select {
 }
 
 /* ==========================================================================
-   Interactive Showcase Track Carousel (Recreating 517.mp4)
+   Scroll-Driven Horizontal Track Section (Matching 517.mp4 Motion)
    ========================================================================== */
 .showcase-section {
-    padding: 100px 0 120px;
     position: relative;
+    min-height: 220vh;
+    padding: 60px 0;
+    overflow: visible;
+}
+
+.showcase-scroll-sticky {
+    position: sticky;
+    top: 10vh;
+    height: 80vh;
+    display: flex;
+    align-items: center;
     overflow: hidden;
-    background: var(--bg-primary, #0f1412);
-    transition: background 0.5s ease;
-}
-
-body.light-theme .showcase-section {
-    background: #f4f4f6;
-}
-
-.showcase-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 50px;
-    padding: 0 24px;
-}
-
-.showcase-hint {
-    font-size: 0.9rem;
-    color: var(--text-muted, #94a3b8);
-    margin-top: 10px;
-    letter-spacing: 0.5px;
+    width: 100%;
 }
 
 .showcase-viewport {
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: 40px 0 60px;
+    padding: 30px 0;
     cursor: grab;
     user-select: none;
 }
@@ -2470,8 +2461,8 @@ body.light-theme .showcase-section {
 
 .showcase-track {
     display: flex;
-    gap: 36px;
-    padding: 0 calc(50vw - 190px);
+    gap: 40px;
+    padding: 0 calc(50vw - 200px);
     width: max-content;
     will-change: transform;
     transform: translate3d(0, 0, 0);
@@ -2479,8 +2470,8 @@ body.light-theme .showcase-section {
 
 /* Outer Wrapper holding Card + Bottom Caption */
 .showcase-card-wrapper {
-    flex: 0 0 380px;
-    width: 380px;
+    flex: 0 0 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -2489,15 +2480,54 @@ body.light-theme .showcase-section {
     perspective: 1000px;
 }
 
-/* Squircle Main White Card Container (Matching 517.mp4 visual frame) */
+/* Squircle Frame Container (Matching 517.mp4 visual frame) */
 .showcase-card {
     width: 100%;
-    height: 380px;
-    background: #ffffff;
+    min-height: 420px;
+    background: var(--bg-surface, rgba(18, 28, 22, 0.7));
+    backdrop-filter: blur(16px);
     border-radius: 32px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1);
     display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+body.light-theme .showcase-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.showcase-card-wrapper:hover .showcase-card {
+    border-color: var(--accent);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 25px rgba(var(--accent-rgb), 0.2);
+}
+
+/* Card Bottom Footer Caption (Left: Project Title, Right: Year Tag) */
+.card-caption {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 8px;
+    font-family: var(--font-heading, 'Outfit', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted, #94a3b8);
+    letter-spacing: -0.2px;
+}
+
+body.light-theme .card-caption {
+    color: #64748b;
+}
+
+.card-year {
+    font-weight: 600;
+    opacity: 0.8;
+}
     justify-content: center;
     position: relative;
     overflow: hidden;

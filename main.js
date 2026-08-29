@@ -475,13 +475,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 9. Interactive Showcase Track Engine (Recreating 517.mp4)
+    // 9. Scroll-Driven Showcase Track Engine (Matching 517.mp4 Motion)
     // ==========================================================================
+    const showcaseSection = document.getElementById("projects");
     const showcaseViewport = document.getElementById("showcase-viewport");
     const showcaseTrack = document.getElementById("showcase-track");
     const cardWrappers = document.querySelectorAll(".showcase-card-wrapper");
 
-    if (showcaseViewport && showcaseTrack && cardWrappers.length > 0) {
+    if (showcaseSection && showcaseViewport && showcaseTrack && cardWrappers.length > 0) {
         let currentX = 0;
         let targetX = 0;
         let isDragging = false;
@@ -497,12 +498,21 @@ document.addEventListener("DOMContentLoaded", () => {
             return Math.max(0, trackWidth - viewportWidth);
         }
 
-        // Mouse Drag Controls (Ultra Smooth Physics & Selection Suppression)
-        showcaseViewport.addEventListener("mousedown", (e) => {
-            // Allow interactive buttons to be clicked normally
-            if (e.target.closest("button") || e.target.closest(".play-btn") || e.target.closest(".watch-play") || e.target.closest(".btn-main-play") || e.target.closest(".spot-play-btn")) {
-                return;
+        // Scroll-Driven Progress Calculation (Scrolling down moves forward, scrolling up reverses)
+        window.addEventListener("scroll", () => {
+            if (isDragging) return;
+            const sectionRect = showcaseSection.getBoundingClientRect();
+            const totalScrollable = showcaseSection.offsetHeight - window.innerHeight;
+            if (totalScrollable > 0) {
+                const currentScroll = -sectionRect.top;
+                const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+                targetX = progress * getMaxScroll();
             }
+        });
+
+        // Mouse Drag Controls
+        showcaseViewport.addEventListener("mousedown", (e) => {
+            if (e.target.closest("button") || e.target.closest("a")) return;
             isDragging = true;
             startX = e.clientX;
             startTargetX = targetX;
@@ -534,7 +544,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 isDragging = false;
                 showcaseViewport.style.cursor = "grab";
                 document.body.style.userSelect = "";
-                // Smooth momentum decay
                 targetX -= velocityX * 160;
                 targetX = Math.max(0, Math.min(targetX, getMaxScroll()));
             }
@@ -560,38 +569,15 @@ document.addEventListener("DOMContentLoaded", () => {
             isDragging = false;
         });
 
-        // Wheel horizontal scrubbing over track section
-        showcaseViewport.addEventListener("wheel", (e) => {
-            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-            if (Math.abs(delta) > 5) {
-                targetX += delta * 0.8;
-                targetX = Math.max(0, Math.min(targetX, getMaxScroll()));
-                e.preventDefault();
-            }
-        }, { passive: false });
-
         // Keyboard Arrow Key Navigation
         window.addEventListener("keydown", (e) => {
             if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
-            const cardWidth = 416; // Card width + gap
+            const cardWidth = 440;
             if (e.key === "ArrowRight") {
                 targetX = Math.min(targetX + cardWidth, getMaxScroll());
             } else if (e.key === "ArrowLeft") {
                 targetX = Math.max(targetX - cardWidth, 0);
             }
-        });
-
-        // Interactive Player Controls inside Mockups
-        const playBtns = document.querySelectorAll(".play-btn, .watch-play, .btn-main-play, .spot-play-btn, .wheel-play");
-        playBtns.forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                if (btn.textContent.trim() === "▶" || btn.textContent.trim() === "⏯") {
-                    btn.textContent = "⏸";
-                } else {
-                    btn.textContent = "▶";
-                }
-            });
         });
 
         // 60 FPS Render Tick Loop with Lerp & Center Scaling Depth
@@ -612,8 +598,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Calculate normalized distance factor (0 at center, 1 at edges)
                 const factor = Math.min(1, distance / maxDistance);
                 
-                // Center card scales to ~1.06, outer cards scale down to ~0.92
-                const scale = 1.06 - factor * 0.14;
+                // Center card scales to ~1.05, outer cards scale down to ~0.92
+                const scale = 1.05 - factor * 0.13;
                 const opacity = 1.0 - factor * 0.35;
 
                 wrapper.style.transform = `scale(${scale})`;
@@ -626,5 +612,6 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(renderShowcaseTrack);
     }
 });
+
 
 

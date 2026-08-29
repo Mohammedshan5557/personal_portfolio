@@ -220,213 +220,180 @@
             </div>
         </section>
 
-        <!-- Projects / Interactive Showcase Section (Recreating 517.mp4 Carousel) -->
+        <!-- Projects Section (Scroll-Driven Track Animation matching 517.mp4) -->
         <section id="projects" class="projects-section showcase-section">
-            <div class="showcase-header reveal-fade-up">
-                <span class="section-subtitle">Portfolio Showcase</span>
-                <h2 class="section-title">Featured Work &amp; UI Components</h2>
-                <p class="showcase-hint">Drag or scroll to explore interactive components</p>
-            </div>
-            
-            <!-- Horizontal Interactive Track -->
-            <div class="showcase-viewport" id="showcase-viewport">
-                <div class="showcase-track" id="showcase-track">
-                    
-                    <!-- Card 1: iOS Island -->
-                    <div class="showcase-card-wrapper" data-index="0">
-                        <div class="showcase-card card-ios-island">
-                            <div class="mockup-ios-island">
-                                <div class="dynamic-island-notch">
-                                    <div class="notch-album">
-                                        <div class="notch-album-img"></div>
+            <div class="section-container">
+                <div class="section-header-row reveal-fade-up">
+                    <div>
+                        <span class="section-subtitle">Portfolio</span>
+                        <h2 class="section-title">Projects Done</h2>
+                    </div>
+                    <!-- Original project filter buttons -->
+                    <div class="project-filters">
+                        <button class="filter-btn active" data-filter="all">All (5)</button>
+                        <button class="filter-btn" data-filter="web">Web Apps</button>
+                        <button class="filter-btn" data-filter="creative">Creative UI</button>
+                        <button class="filter-btn" data-filter="ai">AI Tools</button>
+                    </div>
+                </div>
+
+                <!-- Scroll-Driven Horizontal Track Container -->
+                <div class="showcase-scroll-sticky" id="showcase-scroll-sticky">
+                    <div class="showcase-viewport" id="showcase-viewport">
+                        <div class="showcase-track" id="showcase-track">
+                            
+                            <!-- Project 1: SolveX -->
+                            <div class="showcase-card-wrapper" data-category="web" data-index="0">
+                                <div class="showcase-card card project-card reveal-card">
+                                    <div class="project-graphic-box">
+                                        <span class="project-icon">&#128736;&#65039;</span>
                                     </div>
-                                    <div class="notch-info">
-                                        <span class="notch-title">Take a Flower</span>
-                                        <span class="notch-artist">Latest Single</span>
-                                    </div>
-                                    <div class="notch-waveform">
-                                        <span></span><span></span><span></span><span></span>
+                                    <span class="project-tag">Civic Tech / Web App</span>
+                                    <h3>SolveX</h3>
+                                    <p>A civic platform connecting citizens directly with local authorities to report community infrastructure issues—such as road potholes, water leakages, and electrical safety hazards—for streamlined resolution.</p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/Mohammedshan5557" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Source Code">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://github.com/Mohammedshan5557" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Live Demo">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15 3 21 3 21 9"/>
+                                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="ios-screen-content">
-                                    <div class="ios-header-text">iOS Island</div>
-                                    <div class="ios-island-player">
-                                        <div class="ios-player-art">🌸</div>
-                                        <div class="ios-player-controls">
-                                            <div class="ios-scrubber"><div class="ios-progress"></div></div>
-                                            <div class="ios-btn-row">
-                                                <span>⏮</span>
-                                                <span class="play-btn">⏸</span>
-                                                <span>⏭</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="card-caption">
+                                    <span class="card-title">SolveX</span>
+                                    <span class="card-year">2026</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">iOS Island</span>
-                            <span class="card-year">2026</span>
-                        </div>
-                    </div>
 
-                    <!-- Card 2: Apple Watch Music -->
-                    <div class="showcase-card-wrapper" data-index="1">
-                        <div class="showcase-card card-apple-watch">
-                            <div class="mockup-watch-strap top-strap"></div>
-                            <div class="mockup-watch-body">
-                                <div class="watch-screen">
-                                    <div class="watch-art-banner">
-                                        <div class="flower-illustration">🌺</div>
+                            <!-- Project 2: Personal Portfolio -->
+                            <div class="showcase-card-wrapper" data-category="creative" data-index="1">
+                                <div class="showcase-card card project-card reveal-card">
+                                    <div class="project-graphic-box">
+                                        <span class="project-icon">&#10024;</span>
                                     </div>
-                                    <div class="watch-controls">
-                                        <div class="watch-track-name">Flower Music</div>
-                                        <div class="watch-btn-row">
-                                            <span>⏮</span>
-                                            <span class="watch-play">▶</span>
-                                            <span>⏭</span>
-                                        </div>
+                                    <span class="project-tag">Creative UI / Portfolio</span>
+                                    <h3>Personal Portfolio</h3>
+                                    <p>An interactive, deep matte dark green portfolio website featuring liquid glass UI components, metallic sheen typography, 3D cursor-facing tilt physics, and responsive layouts.</p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/Mohammedshan5557/personal_portfolio" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Source Code">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://mohammedshan5557.github.io/personal_portfolio/" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Live Demo">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15 3 21 3 21 9"/>
+                                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                            </svg>
+                                        </a>
                                     </div>
+                                </div>
+                                <div class="card-caption">
+                                    <span class="card-title">Personal Portfolio</span>
+                                    <span class="card-year">2026</span>
                                 </div>
                             </div>
-                            <div class="mockup-watch-strap bottom-strap"></div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">Apple Watch Music</span>
-                            <span class="card-year">2026</span>
-                        </div>
-                    </div>
 
-                    <!-- Card 3: Player Component -->
-                    <div class="showcase-card-wrapper" data-index="2">
-                        <div class="showcase-card card-dark-player">
-                            <div class="mockup-dark-player">
-                                <div class="player-top-row">
-                                    <div class="player-cover">🌼</div>
-                                    <div class="player-details">
-                                        <h4 class="player-song">The World of Flowers</h4>
-                                        <p class="player-sub">Latest Single</p>
+                            <!-- Project 3: Aura Canvas -->
+                            <div class="showcase-card-wrapper" data-category="creative" data-index="2">
+                                <div class="showcase-card card project-card reveal-card">
+                                    <div class="project-graphic-box">
+                                        <span class="project-icon">&#10024;</span>
+                                    </div>
+                                    <span class="project-tag">Creative UI</span>
+                                    <h3>Aura Canvas</h3>
+                                    <p>An interactive, gesture-controlled digital canvas utilizing WebGL shaders and smooth physics particles.</p>
+                                    <div class="project-links">
+                                        <a href="#" class="project-link" aria-label="View Source Code">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="project-link" aria-label="View Live Demo">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15 3 21 3 21 9"/>
+                                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="player-timeline">
-                                    <div class="timeline-bar"><div class="timeline-fill"></div></div>
-                                    <div class="timeline-times">
-                                        <span>1:42</span>
-                                        <span>3:20</span>
+                                <div class="card-caption">
+                                    <span class="card-title">Aura Canvas</span>
+                                    <span class="card-year">2026</span>
+                                </div>
+                            </div>
+
+                            <!-- Project 4: Zenith Tasker -->
+                            <div class="showcase-card-wrapper" data-category="web" data-index="3">
+                                <div class="showcase-card card project-card reveal-card">
+                                    <div class="project-graphic-box">
+                                        <span class="project-icon">&#128187;</span>
+                                    </div>
+                                    <span class="project-tag">Web App</span>
+                                    <h3>Zenith Tasker</h3>
+                                    <p>A keyboard-centric productivity application designed with drag-and-drop mechanics and offline sync features.</p>
+                                    <div class="project-links">
+                                        <a href="#" class="project-link" aria-label="View Source Code">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="project-link" aria-label="View Live Demo">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15 3 21 3 21 9"/>
+                                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="player-controls-bar">
-                                    <span>🔀</span>
-                                    <span>⏮</span>
-                                    <span class="btn-main-play">⏸</span>
-                                    <span>⏭</span>
-                                    <span>🔁</span>
+                                <div class="card-caption">
+                                    <span class="card-title">Zenith Tasker</span>
+                                    <span class="card-year">2026</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">Player Component</span>
-                            <span class="card-year">2026</span>
-                        </div>
-                    </div>
 
-                    <!-- Card 4: Spotify -->
-                    <div class="showcase-card-wrapper" data-index="3">
-                        <div class="showcase-card card-spotify">
-                            <div class="mockup-spotify-player">
-                                <div class="spotify-art">🌻</div>
-                                <div class="spotify-meta">
-                                    <h4 class="spotify-title">Take a Flower</h4>
-                                    <p class="spotify-artist">Latest Single</p>
-                                </div>
-                                <div class="spotify-controls">
-                                    <span class="spot-icon">⏮</span>
-                                    <span class="spot-play-btn">⏸</span>
-                                    <span class="spot-icon">⏭</span>
-                                </div>
-                                <div class="spotify-progress-bar">
-                                    <div class="spot-fill"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">Spotify</span>
-                            <span class="card-year">2026</span>
-                        </div>
-                    </div>
-
-                    <!-- Card 5: Vinyl Record -->
-                    <div class="showcase-card-wrapper" data-index="4">
-                        <div class="showcase-card card-vinyl">
-                            <div class="mockup-vinyl-sleeve">
-                                <div class="sleeve-art">
-                                    <span class="flower-icon">🌷</span>
-                                    <span class="sleeve-title">Flower Music</span>
-                                </div>
-                                <div class="vinyl-disc">
-                                    <div class="vinyl-grooves"></div>
-                                    <div class="vinyl-label">🌸</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">Vinyl Record</span>
-                            <span class="card-year">2026</span>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: Website -->
-                    <div class="showcase-card-wrapper" data-index="5">
-                        <div class="showcase-card card-website">
-                            <div class="mockup-browser-window">
-                                <div class="browser-header">
-                                    <div class="browser-dots">
-                                        <span class="dot red"></span>
-                                        <span class="dot yellow"></span>
-                                        <span class="dot green"></span>
+                            <!-- Project 5: NeuroForge -->
+                            <div class="showcase-card-wrapper" data-category="ai" data-index="4">
+                                <div class="showcase-card card project-card reveal-card">
+                                    <div class="project-graphic-box">
+                                        <span class="project-icon">&#129302;</span>
                                     </div>
-                                    <div class="browser-url">www.flowewver.eu</div>
-                                </div>
-                                <div class="browser-body">
-                                    <div class="hero-graphic">
-                                        <h3>Flower Music</h3>
-                                        <div class="floating-petals">🌸 🌺 🌼</div>
+                                    <span class="project-tag">AI Tool</span>
+                                    <h3>NeuroForge</h3>
+                                    <p>An experimental interface that translates natural language prompts into localized procedural design systems.</p>
+                                    <div class="project-links">
+                                        <a href="#" class="project-link" aria-label="View Source Code">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="project-link" aria-label="View Live Demo">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15 3 21 3 21 9"/>
+                                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">Website</span>
-                            <span class="card-year">2026</span>
-                        </div>
-                    </div>
-
-                    <!-- Card 7: iPod -->
-                    <div class="showcase-card-wrapper" data-index="6">
-                        <div class="showcase-card card-ipod">
-                            <div class="mockup-ipod-device">
-                                <div class="ipod-screen">
-                                    <div class="ipod-album-art">🌷</div>
-                                    <div class="ipod-song-info">
-                                        <div class="ipod-song-title">Take a Flower</div>
-                                        <div class="ipod-song-sub">Mohammed Shan</div>
-                                    </div>
-                                </div>
-                                <div class="ipod-clickwheel">
-                                    <span class="wheel-menu">MENU</span>
-                                    <span class="wheel-prev">⏮</span>
-                                    <span class="wheel-next">⏭</span>
-                                    <span class="wheel-play">⏯</span>
-                                    <div class="wheel-center"></div>
+                                <div class="card-caption">
+                                    <span class="card-title">NeuroForge</span>
+                                    <span class="card-year">2026</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-caption">
-                            <span class="card-title">iPod</span>
-                            <span class="card-year">2026</span>
+
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
