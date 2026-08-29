@@ -406,8 +406,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================================================
-    // 7. Projects Grid Filtering
+    // 7. Projects Grid Filtering (Web Apps vs Creative UI)
     // ==========================================================================
+    const showcaseCardWrappers = document.querySelectorAll(".showcase-card-wrapper");
     filterBtns.forEach(btn => {
         btn.addEventListener("click", () => {
             const filterValue = btn.getAttribute("data-filter");
@@ -415,13 +416,15 @@ document.addEventListener("DOMContentLoaded", () => {
             filterBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             
-            projectCards.forEach(card => {
+            showcaseCardWrappers.forEach(card => {
                 const category = card.getAttribute("data-category");
                 
                 if (filterValue === "all" || category === filterValue) {
+                    card.style.display = "flex";
                     card.classList.remove("hide");
                     card.classList.add("show");
                 } else {
+                    card.style.display = "none";
                     card.classList.remove("show");
                     card.classList.add("hide");
                 }
