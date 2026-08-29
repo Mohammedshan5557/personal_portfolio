@@ -2528,6 +2528,117 @@ body.light-theme .card-caption {
     font-weight: 600;
     opacity: 0.8;
 }
+
+/* Inner Project Card Box Layout (SolveX & Personal Portfolio) */
+.project-card-box {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.project-graphic-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: rgba(var(--accent-rgb), 0.12);
+    border: 1px solid rgba(var(--accent-rgb), 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.project-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.project-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.project-body h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.project-body p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.project-footer {
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.light-theme .project-footer {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.project-links {
+    display: flex;
+    gap: 14px;
+}
+
+.project-links .project-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+body.light-theme .project-links .project-link {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #0f172a;
+}
+
+.project-links .project-link:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.project-links .project-link svg {
+    width: 18px;
+    height: 18px;
+}
     justify-content: center;
     position: relative;
     overflow: hidden;
